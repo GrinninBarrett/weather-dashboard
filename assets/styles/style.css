@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
+
+:root {
+    --very-light-gray: rgb(245, 245, 245);
+    --light-gray: rgb(223, 223, 223);
+    --mediuim-gray: rgb(201, 201, 201);
+    --gray: rgb(151, 151, 151);
+    --dark-gray: rgb(99, 99, 99);
+    --very-dark-gray: rgb(51, 51, 51);
+    --light-blue: rgb(221, 247, 255);
+    --background-blue: rgb(213, 237, 243);
+    --sky-blue: rgb(51, 138, 160);
+    --blue: rgb(52, 130, 209);
+    --big-blue: rgb(87, 162, 192);
+    --dark-blue: rgb(32, 108, 138);
+    --green-accent: rgb(109, 253, 193);
+    --red-accent: rgb(253, 126, 109);
+}
+
+
+body {
+    background-color: var(--light-blue);
+    font-family: "Quicksand", sans-serif;
+}
+
+h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    height: 80vh;
+}
+
+h2, h3 {
+    color: var(--very-dark-gray);
+    margin: 0;
+}
+
+#page-header {
+    background: linear-gradient(90deg, var(--dark-blue), 80%, #e99754);
+    color: var(--light-blue);
+    padding: 2em;
+    text-align: center;
+}
+
+#search-container {
+    width: 20%;
+    margin: 1em;
+    padding: 1em;
+}
+
+#search-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 10em;
+    border-bottom: 1px solid var(--very-dark-gray);
+}
+
+#search-text {
+    border-radius: 8px;
+    border: 1px solid var(--very-dark-gray);
+    padding: 0.3em;
+}
+
+#search-text:focus {
+    outline: none;
+}
+
+#search-button {
+    background-color: var(--dark-blue);
+    color: var(--very-light-gray);
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    padding: 0.3em;
+    transition: all 0.3s;
+}
+
+#search-button:hover {
+    cursor: pointer;
+    background-color: var(--big-blue);
+    transform: scale(1.01);
+}
+
+#search-button:active {
+    background-color: var(--dark-blue);
+    transform: scale(1);
+}
+
+#weather-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    margin: 1em;
+}
+
+#current-weather {
+    background-color: var(--background-blue);
+    height: 50%;
+    border: 1px solid var(--very-dark-gray);
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+
+#forecast-container {
+    height: 50%;
+}
+
+#forecast-items-container {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    height: 90%;
+    margin-top: 1em;
+}
+
+
+.forecast-item {
+    height: 80%;
+    width: 18%;
+    background-color: var(--dark-blue);
+    color: var(--very-dark-gray);
+    border-radius: 10px;
+}
