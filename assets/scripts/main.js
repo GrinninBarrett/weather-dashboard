@@ -107,32 +107,31 @@ function getCoordinates(city) {
             console.log(response.status);
             if (response.ok) {
                 return response.json();
-            } else {
-                throw new Error("No city found with that name.");
             }
         })
         .then(function (data) {
             console.log(data);
+            // Check if data is actually a usable object (response sometimes returns ok even if it's empty)
             if (data !== []) {
                 lat = data[0].lat;
                 lon = data[0].lon;
+                // Add searched city to history list only if it's a valid city
                 addToHistory(city);
                 getWeatherData(lat, lon);
-            } else {
-                throw new Error("No city found with that name.");
             }
         })
         .catch(function (error) {
             searchInputEl.value = "";
+            // Show tooltip to let user know their input is not a valid city
             let toolTip = document.querySelector(".tooltip");
             let toolTipText = document.querySelector(".tooltip-text");
             toolTip.style.display = "block";
             toolTipText.style.visibility = "visible";
+            // Set timeout to hide tooltip
             setTimeout(function() {
                 toolTipText.style.visibility = "hidden";
                 toolTip.style.display = "none";
             }, 2000);
-
         })
 }
 
