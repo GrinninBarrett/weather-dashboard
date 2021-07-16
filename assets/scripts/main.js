@@ -10,6 +10,8 @@ let historyListEl = document.querySelector("#search-history-list");
 let historyItems = JSON.parse(localStorage.getItem("history") || "[]");
 let numCities = localStorage.getItem("numCities") || 0;
 
+let validCity = true;
+
 
 // Add event listeners to search form
 searchFormEl.addEventListener("submit", function(event) {
@@ -24,7 +26,6 @@ searchFormEl.addEventListener("submit", function(event) {
         }
         let formattedCityName = arr.join(" ");
 
-        addToHistory(formattedCityName);
         getCoordinates(formattedCityName);
     }
 });
@@ -86,20 +87,73 @@ function populateHistoryList() {
 populateHistoryList();
 
 
+
+
 let getCoordsRequestURL = "http://api.openweathermap.org/geo/1.0/direct?q=";
 let apiKey = "45a7ada253a9672823033c8c2e97ec64";
 
+let controller = new AbortController();
+let signal = controller.signal;
 
 
+let lat;
+let lon;
+
+// Get coordinates from city name using geocoding
 function getCoordinates(city) {
 
     fetch(getCoordsRequestURL + city + "&limit=1&appid=" + apiKey)
         .then(function (response) {
-            return response.json();
+            console.log(response.status);
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error("No city found with that name.");
+            }
         })
         .then(function (data) {
-            console.log(data[0].lat);
-            console.log(data[0].lon);
+            console.log(data);
+            if (data !== []) {
+                lat = data[0].lat;
+                lon = data[0].lon;
+                addToHistory(city);
+                getWeatherData(lat, lon);
+            } else {
+                throw new Error("No city found with that name.");
+            }
+        })
+        .catch(function (error) {
+            searchInputEl.value = "";
+            let toolTip = document.querySelector(".tooltip");
+            let toolTipText = document.querySelector(".tooltip-text");
+            toolTip.style.display = "block";
+            toolTipText.style.visibility = "visible";
+            setTimeout(function() {
+                toolTipText.style.visibility = "hidden";
+                toolTip.style.display = "none";
+            }, 2000);
+
         })
 }
 
+let weatherDataURL = `https://api.openweathermap.org/data/2.5/onecall?`;
+
+function getWeatherData(lat, lon) {
+    fetch(weatherDataURL + `lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=imperial&appid=${apiKey}`)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            populateForecast(data.daily.slice(0, 5));
+            populateCurrent(data.current);
+        })
+}
+
+function populateForecast(dailyWeather) {
+    console.log(dailyWeather);
+}
+
+function populateCurrent(currentWeather) {
+    console.log(currentWeather);
+}

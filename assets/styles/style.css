@@ -166,3 +166,22 @@ button {
     color: var(--very-dark-gray);
     border-radius: 10px;
 }
+
+/* Tooltip for when a user enters an invalid city */
+.tooltip {
+    position: absolute;
+    width: 400px;
+    top: 12em;
+    left: 5em;
+}
+  
+.tooltip .tooltip-text {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+  }
+  
