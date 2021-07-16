@@ -15,7 +15,8 @@
     --big-blue: rgb(87, 162, 192);
     --dark-blue: rgb(32, 108, 138);
     --green-accent: rgb(109, 253, 193);
-    --red-accent: rgb(253, 126, 109);
+    --red-accent: rgb(228, 128, 115);
+    --red-accent-highlight: rgb(212, 103, 89);
 }
 
 
@@ -34,13 +35,21 @@ main {
     height: 80vh;
 }
 
-h2, h3 {
+h2, h3, h4 {
     color: var(--very-dark-gray);
     margin: 0;
 }
 
+button {
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    padding: 0.3em;
+    transition: all 0.5s;
+}
+
 #page-header {
-    background: linear-gradient(90deg, var(--dark-blue), 80%, #e99754);
+    background: linear-gradient(90deg, var(--dark-blue), 80%, var(--red-accent));
     color: var(--light-blue);
     padding: 2em;
     text-align: center;
@@ -58,6 +67,7 @@ h2, h3 {
     justify-content: space-evenly;
     height: 10em;
     border-bottom: 1px solid var(--very-dark-gray);
+    margin-bottom: 1em;
 }
 
 #search-text {
@@ -73,22 +83,36 @@ h2, h3 {
 #search-button {
     background-color: var(--dark-blue);
     color: var(--very-light-gray);
-    outline: none;
-    border: none;
-    border-radius: 8px;
-    padding: 0.3em;
-    transition: all 0.3s;
 }
 
 #search-button:hover {
     cursor: pointer;
     background-color: var(--big-blue);
-    transform: scale(1.01);
 }
 
 #search-button:active {
     background-color: var(--dark-blue);
     transform: scale(1);
+}
+
+#search-history-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#search-history-list {
+    width: 100%;
+    padding: 0;
+}
+
+#clear-history {
+    background-color: var(--red-accent);
+}
+
+#clear-history:hover {
+    background-color: var(--red-accent-highlight);
+    cursor: pointer;
 }
 
 #weather-container {
@@ -119,6 +143,21 @@ h2, h3 {
     margin-top: 1em;
 }
 
+
+.history-item {
+    text-align: center;
+    padding: 0.3em;
+    margin-bottom: 0.5em;
+    background-color: var(--dark-gray);
+    color: var(--very-light-gray);
+    border-radius: 8px;
+    transition: all 0.5s;
+}
+
+.history-item:hover {
+    background-color: var(--very-dark-gray);
+    cursor: pointer;
+}
 
 .forecast-item {
     height: 80%;
