@@ -90,7 +90,6 @@ let getCoordsRequestURL = "http://api.openweathermap.org/geo/1.0/direct?q=";
 let apiKey = "45a7ada253a9672823033c8c2e97ec64";
 
 
-// {city name},{state code},{country code}&limit={limit}&appid={API key}"
 
 function getCoordinates(city) {
 
