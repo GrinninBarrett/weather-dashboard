@@ -128,7 +128,7 @@ button {
     flex-direction: column;
     align-items: flex-start;
     background-color: var(--background-blue);
-    height: 50%;
+    height: 40%;
     border: 1px solid var(--very-dark-gray);
     border-radius: 10px;
     margin-bottom: 1em;
@@ -139,7 +139,7 @@ button {
     margin: 1em;
 }
 
-#current-weather-details {
+#current-weather-details-container {
     margin-left: 2em;
 }
 
@@ -152,7 +152,7 @@ button {
 }
 
 #forecast-container {
-    height: 50%;
+    height: 45%;
 }
 
 #forecast-items-container {
@@ -178,6 +178,11 @@ button {
 .history-item:hover {
     background-color: var(--very-dark-gray);
     cursor: pointer;
+}
+
+
+.current-weather-details {
+    font-size: 1.2em;
 }
 
 
