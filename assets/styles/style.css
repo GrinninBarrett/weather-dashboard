@@ -9,7 +9,7 @@
     --dark-gray: rgb(99, 99, 99);
     --very-dark-gray: rgb(51, 51, 51);
     --light-blue: rgb(221, 247, 255);
-    --background-blue: rgb(213, 237, 243);
+    --background-blue: rgb(119, 214, 198);
     --sky-blue: rgb(51, 138, 160);
     --blue: rgb(52, 130, 209);
     --big-blue: rgb(87, 162, 192);
@@ -127,19 +127,30 @@ button {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background-color: var(--background-blue);
-    height: 40%;
+    min-height: 40%;
+    background-color: var(--dark-blue);
+    color: var(--very-light-gray);
     border: 1px solid var(--very-dark-gray);
     border-radius: 10px;
     margin-bottom: 1em;
+    padding: 1em;
+}
+
+#current-weather-heading-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #current-weather-heading {
     font-size: 1.6em;
-    margin: 1em;
+    margin: 0.3em;
 }
 
 #current-weather-details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     margin-left: 2em;
 }
 
@@ -147,7 +158,7 @@ button {
     margin-left: 0.5em;
     padding: 1px 15px;
     border-radius: 8px;
-    background-color: rgb(26, 158, 114);
+    background-color: rgb(233, 94, 52);
     color: var(--very-light-gray);
 }
 
@@ -183,15 +194,13 @@ button {
 
 .current-weather-details {
     font-size: 1.2em;
+    margin: 0.5em;
 }
 
 
 .forecast-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 80%;
-    width: 18%;
+    min-height: 70%;
+    min-width: 18%;
     background-color: var(--dark-blue);
     color: var(--very-light-gray);
     border-radius: 10px;
@@ -204,6 +213,7 @@ button {
 
 .forecast-item-details {
     margin-left: 1em;
+    padding: 1em 0;
 }
 
 /* Tooltip for when a user enters an invalid city */
