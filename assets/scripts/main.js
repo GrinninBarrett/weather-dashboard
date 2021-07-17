@@ -12,6 +12,13 @@ let currentWeatherEl = document.querySelector("#current-weather");
 let historyItems = JSON.parse(localStorage.getItem("history") || "[]");
 let numCities = localStorage.getItem("numCities") || 0;
 
+// Set today's date
+let date = new Date();
+let year = date.getFullYear();
+let month = date.getMonth() + 1;
+let day = date.getDate();
+let today = `${month}/${day}/${year}`;
+
 
 
 // Add event listeners to search form
@@ -180,7 +187,7 @@ function populateCurrentData(weatherData, cityName) {
     let currentWeatherHeadingContainer = document.createElement("div");
     currentWeatherHeadingContainer.setAttribute("id", "current-weather-heading-container");
     let currentWeatherHeadingEl = document.createElement("h5");
-    currentWeatherHeadingEl.textContent = cityName;
+    currentWeatherHeadingEl.textContent = `${cityName} - ${today} `;
     currentWeatherHeadingEl.setAttribute("id", "current-weather-heading");
     
     currentWeatherEl.appendChild(currentWeatherHeadingContainer);
@@ -229,6 +236,7 @@ function populateCurrentData(weatherData, cityName) {
 
 function populateForecastData(weatherData) {
     let forecastWeatherData = weatherData.daily.slice(0, 5);
+    let allForecastItems = document.querySelectorAll(".forecast-item");
     console.log(forecastWeatherData);
 }
 
