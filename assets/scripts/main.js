@@ -6,7 +6,7 @@ let clearHistoryButton = document.querySelector("#clear-history");
 let historyListEl = document.querySelector("#search-history-list");
 
 // Assign variables for other DOM elements
-let currentWeatherEl = document.querySelector("#current-weather");
+let currentWeatherEl = document.querySelector("#current-weather-container");
 
 // Set history items from local storage if available, and to an empty array if not
 let historyItems = JSON.parse(localStorage.getItem("history") || "[]");
@@ -108,7 +108,6 @@ function getCoordinates(city) {
 
     fetch(getCoordsRequestURL + city + "&limit=1&appid=" + apiKey)
         .then(function (response) {
-            console.log(response.status);
             if (response.ok) {
                 return response.json();
             }
@@ -116,7 +115,6 @@ function getCoordinates(city) {
         .then(function (data) {
             // Check if data is actually a usable object (response sometimes returns ok even if it's empty)
             if (data !== []) {
-                console.log(data);
                 let lat = data[0].lat;
                 let lon = data[0].lon;
                 let cityName = data[0].name;
@@ -175,8 +173,6 @@ function getWeatherData(lat, lon, cityName) {
 
 // Add current weather data to page
 function populateCurrentData(weatherData, cityName) {
-    console.log(weatherData);
-    console.log(cityName);
 
     let currentWeatherData = weatherData.current;
     let weatherIcon = weatherData.current.weather[0].icon;
@@ -211,13 +207,13 @@ function populateCurrentData(weatherData, cityName) {
     }
 
     // Add text to newly created p elements
-    let allDetailItems = document.querySelectorAll(".current-weather-details");
+    let allDetailItems = detailsContainer.children;
 
     allDetailItems[3].innerHTML = `UV Index: <span id="uv-index"></span>`;
 
     allDetailItems[0].textContent = `Temperature: ${currentWeatherData.temp}\u00B0`;
     allDetailItems[1].textContent = `Humidity: ${currentWeatherData.humidity}%`;
-    allDetailItems[2].textContent = `Wind: ${currentWeatherData.wind_speed}mph`;
+    allDetailItems[2].textContent = `Wind: ${currentWeatherData.wind_speed} mph`;
     
     let uvIndexEl = document.querySelector("#uv-index");
     uvIndexEl.textContent = currentWeatherData.uvi;
@@ -237,6 +233,57 @@ function populateCurrentData(weatherData, cityName) {
 function populateForecastData(weatherData) {
     let forecastWeatherData = weatherData.daily.slice(0, 5);
     let allForecastItems = document.querySelectorAll(".forecast-item");
-    console.log(forecastWeatherData);
+
+    for (let i = 0; i < allForecastItems.length; i++) {
+
+        // Get weather for that specific day
+        let thatDayWeather = forecastWeatherData[i];
+        let thatDayTemp = thatDayWeather.temp.max;
+        let thatDayHumidity = thatDayWeather.humidity;
+        let thatDayWind = thatDayWeather.wind_speed;
+        let thatDayIcon = thatDayWeather.weather[0].icon;
+
+        // Specify which forecast item container to update and empty to make way for new details
+        let currentContainer = allForecastItems[i];
+        currentContainer.innerHTML = "";
+
+        // Get new date for each forecast day
+        let thatDate = new Date(date);
+        thatDate.setDate(date.getDate() + (i+1));
+        let thatYear = thatDate.getFullYear();
+        let thatMonth = thatDate.getMonth() + 1;
+        let thatDay = thatDate.getDate();
+        let thatDateFormatted = `${thatMonth}/${thatDay}/${thatYear}`;
+
+        // Create new elements to add
+        let thatDayWeatherHeading = document.createElement("div");
+        thatDayWeatherHeading.setAttribute("class", "forecast-item-heading");
+        thatDayWeatherHeading.textContent = thatDateFormatted;
+
+        let thatDayIconEl = document.createElement("img");
+        thatDayIconEl.setAttribute("src", `http://openweathermap.org/img/wn/${thatDayIcon}.png`);
+
+        let thatDayDetailsContainer = document.createElement("div");
+        thatDayDetailsContainer.setAttribute("class", "forecast-item-details-container");
+
+        currentContainer.appendChild(thatDayWeatherHeading);
+        currentContainer.appendChild(thatDayIconEl);
+        currentContainer.appendChild(thatDayDetailsContainer);
+
+        // Create and add all details
+        for (let i = 0; i < 3; i++) {
+            let nextItem = document.createElement("p");
+            nextItem.setAttribute("class", "forecast-item-detail");
+            thatDayDetailsContainer.appendChild(nextItem);
+        }
+
+        let thatDayDetails = thatDayDetailsContainer.children;
+
+        thatDayDetails[0].textContent = `Temperature: ${thatDayTemp}\u00B0`;
+        thatDayDetails[1].textContent = `Humidity: ${thatDayHumidity}%`;
+        thatDayDetails[2].textContent = `Wind: ${thatDayWind} mph`;
+
+        
+    }
 }
 
