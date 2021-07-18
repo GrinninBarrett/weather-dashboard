@@ -20,8 +20,7 @@ let day = date.getDate();
 let today = `${month}/${day}/${year}`;
 
 
-
-// Add event listeners to search form
+// Add event listener to search form
 searchFormEl.addEventListener("submit", function(event) {
     event.preventDefault();
     let searchedCity = searchInputEl.value.trim();
@@ -95,9 +94,9 @@ function populateHistoryList() {
 populateHistoryList();
 
 
-//----------------------------
-// Begin code for API requests
-//----------------------------
+//------------------------------------------------
+// Begin code for API requests and displaying data
+//------------------------------------------------
 
 let getCoordsRequestURL = "http://api.openweathermap.org/geo/1.0/direct?q=";
 let apiKey = "45a7ada253a9672823033c8c2e97ec64";
@@ -120,7 +119,6 @@ function getCoordinates(city) {
                 let cityName = data[0].name;
                 // Add searched city to history list only if it's a valid city
                 addToHistory(city);
-                // populateCityName(data[0].name);
                 getWeatherData(lat, lon, cityName);
             }
         })
@@ -156,20 +154,6 @@ function getWeatherData(lat, lon, cityName) {
         })
 }
 
-// Add city name to current weather container - done separately because weather info object returned with coordinates does not contain city name
-// function populateCityName(cityName) {
-//     // Remove previous city
-//     currentWeatherEl.innerHTML = "";
-
-//     let currentWeatherHeadingContainer = document.createElement("div");
-//     currentWeatherHeadingContainer.setAttribute("id", "current-weather-heading-container");
-//     let currentWeatherHeadingEl = document.createElement("h5");
-//     currentWeatherHeadingEl.textContent = cityName;
-//     currentWeatherHeadingEl.setAttribute("id", "current-weather-heading");
-    
-//     currentWeatherEl.appendChild(currentWeatherHeadingContainer);
-//     currentWeatherHeadingContainer.appendChild(currentWeatherHeadingEl);
-// }
 
 // Add current weather data to page
 function populateCurrentData(weatherData, cityName) {
