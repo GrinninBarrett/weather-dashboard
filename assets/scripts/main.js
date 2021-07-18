@@ -98,7 +98,7 @@ populateHistoryList();
 // Begin code for API requests and displaying data
 //------------------------------------------------
 
-let getCoordsRequestURL = "http://api.openweathermap.org/geo/1.0/direct?q=";
+let getCoordsRequestURL = "https://api.openweathermap.org/geo/1.0/direct?q=";
 let apiKey = "45a7ada253a9672823033c8c2e97ec64";
 
 
