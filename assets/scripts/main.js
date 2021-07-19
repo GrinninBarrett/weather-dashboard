@@ -77,9 +77,11 @@ function populateHistoryList() {
         // Add all history list items as children to the ordered list element
         for (let i = 0; i < historyItems.length; i++) {
             let nextListItemEl = document.createElement("li");
-            nextListItemEl.textContent = historyItems[i];
-            nextListItemEl.classList.add("history-item");
+            let nextListButton = document.createElement("button");
+            nextListButton.classList.add("history-item");
+            nextListButton.textContent = historyItems[i];
             historyListEl.appendChild(nextListItemEl);
+            nextListItemEl.appendChild(nextListButton);
 
             // Add event listener to each history item
             nextListItemEl.addEventListener("click", function() {

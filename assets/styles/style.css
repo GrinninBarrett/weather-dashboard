@@ -48,6 +48,10 @@ button {
     transition: all 0.5s;
 }
 
+button:focus {
+    box-shadow: 0 0 5px var(--very-dark-gray);
+}
+
 #page-header {
     background: linear-gradient(45deg, var(--dark-blue), 80%, var(--red-accent));
     color: var(--light-blue);
@@ -104,6 +108,7 @@ button {
 #search-history-list {
     width: 100%;
     padding: 0;
+    list-style-type: none;
 }
 
 #clear-history {
@@ -178,6 +183,7 @@ button {
 
 .history-item {
     text-align: center;
+    width: 100%;
     padding: 0.3em;
     margin-bottom: 0.5em;
     background-color: var(--dark-gray);
