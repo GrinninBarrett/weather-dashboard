@@ -177,7 +177,7 @@ function populateCurrentData(weatherData, cityName) {
 
     // Add current weather icon beside city name
     let weatherIconEl = document.createElement("img");
-    weatherIconEl.setAttribute("src", `http://openweathermap.org/img/wn/${weatherIcon}.png`);
+    weatherIconEl.setAttribute("src", `https://openweathermap.org/img/wn/${weatherIcon}.png`);
     currentWeatherHeadingContainer.appendChild(weatherIconEl);
 
 
@@ -247,7 +247,7 @@ function populateForecastData(weatherData) {
         thatDayWeatherHeading.textContent = thatDateFormatted;
 
         let thatDayIconEl = document.createElement("img");
-        thatDayIconEl.setAttribute("src", `http://openweathermap.org/img/wn/${thatDayIcon}.png`);
+        thatDayIconEl.setAttribute("src", `https://openweathermap.org/img/wn/${thatDayIcon}.png`);
 
         let thatDayDetailsContainer = document.createElement("div");
         thatDayDetailsContainer.setAttribute("class", "forecast-item-details-container");
