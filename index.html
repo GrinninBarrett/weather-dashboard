@@ -6,8 +6,8 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel='icon' href='assets/images/favicon.jpeg' />
-    <link href='assets/styles/normalize.css' rel='stylesheet'>
-    <link href='assets/styles/style.css' rel='stylesheet'>
+    <link href='./assets/styles/normalize.css' rel='stylesheet'>
+    <link href='./assets/styles/style.css' rel='stylesheet'>
     <title>Weather Dashboard</title>
 </head>
 
@@ -33,21 +33,23 @@
         </section>
 
         <section id="weather-container">
-            <div id="current-weather-container"></div>
+            <div id="current-weather-container">
+                <h2 id="initial-weather-heading">Search for a city to see weather data</h2>
+            </div>
             <div id="forecast-container">
                 <h3>5-Day Forecast</h3>
                 <div id="forecast-items-container">
-                    <div class="forecast-item"></div>
-                    <div class="forecast-item"></div>
-                    <div class="forecast-item"></div>
-                    <div class="forecast-item"></div>
-                    <div class="forecast-item"></div>
+                    <article class="forecast-item"></article>
+                    <article class="forecast-item"></article>
+                    <article class="forecast-item"></article>
+                    <article class="forecast-item"></article>
+                    <article class="forecast-item"></article>
                 </div>
             </div>
         </section>
     </main>
 
-    <script src='assets/scripts/main.js'></script>
+    <script src='./assets/scripts/main.js'></script>
 </body>
 
 </html>
