@@ -1,12 +1,13 @@
 // Assign variables related to search
-let searchFormEl = document.querySelector("#search-form");
-let searchInputEl = document.querySelector("#search-text");
-let searchButton = document.querySelector("#search-button");
-let clearHistoryButton = document.querySelector("#clear-history");
-let historyListEl = document.querySelector("#search-history-list");
+const searchFormEl = document.querySelector("#search-form");
+const searchInputEl = document.querySelector("#search-text");
+const searchButton = document.querySelector("#search-button");
+const clearHistoryButton = document.querySelector("#clear-history");
+const historyListEl = document.querySelector("#search-history-list");
+const forecastContainer = document.querySelector("#forecast-container");
 
 // Assign variables for other DOM elements
-let currentWeatherEl = document.querySelector("#current-weather-container");
+const currentWeatherEl = document.querySelector("#current-weather-container");
 
 // Set history items from local storage if available, and to an empty array if not
 let historyItems = JSON.parse(localStorage.getItem("history") || "[]");
@@ -217,6 +218,8 @@ function populateCurrentData(weatherData, cityName) {
 }
 
 function populateForecastData(weatherData) {
+    forecastContainer.classList.remove('forecast-container-hidden');
+    forecastContainer.classList.add('forecast-container-shown');
     let forecastWeatherData = weatherData.daily.slice(0, 5);
     let allForecastItems = document.querySelectorAll(".forecast-item");
 

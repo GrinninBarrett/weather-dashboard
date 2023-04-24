@@ -31,6 +31,7 @@ h1 {
 main {
   display: flex;
   height: 80vh;
+  width: 100%;
 }
 
 h2,
@@ -73,6 +74,14 @@ button:focus {
   margin: 0.5em;
 }
 
+.forecast-container-hidden {
+  display: none;
+}
+
+.forecast-container-shown {
+  display: block;
+}
+
 .forecast-item {
   min-height: 70%;
   min-width: 18%;
@@ -113,10 +122,11 @@ button:focus {
   color: var(--light-blue);
   padding: 2em;
   text-align: center;
+  max-width: 100%;
 }
 
 #search-container {
-  width: 20%;
+  flex: 1;
   margin: 1em;
   padding: 1em;
 }
@@ -177,13 +187,13 @@ button:focus {
 }
 
 #initial-weather-heading {
-    color: var(--very-light-gray);
+  color: var(--very-light-gray);
 }
 
 #weather-container {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  flex: 4;
   height: 100%;
   margin: 1em;
 }
@@ -227,14 +237,41 @@ button:focus {
   color: var(--very-light-gray);
 }
 
-#forecast-container {
-  height: 45%;
-}
-
 #forecast-items-container {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
   height: 90%;
   margin-top: 1em;
+}
+
+@media screen and (max-width: 1135px) {
+  main {
+    flex-direction: column-reverse;
+    height: auto;
+    align-items: center;
+  }
+
+  #search-container {
+    width: 50%;
+    margin-top: 0;
+  }
+
+  #weather-container {
+    width: 90%;
+  }
+
+  .forecast-container-shown {
+    margin: 1rem 0;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  #forecast-items-container {
+    flex-direction: column;
+  }
+
+  .forecast-item {
+    margin: auto 0 1rem 0;
+  }
 }
